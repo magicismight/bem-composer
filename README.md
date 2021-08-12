@@ -69,7 +69,7 @@ console.log(mv.toString()); // 'button--icon__active-hover'
 console.log(e({
   'active',
   value: false
-})) // 'button--icon'
+}).toString()) // 'button--icon'
 console.log(e({
   'active',
   value: true
@@ -108,8 +108,8 @@ Provide a curried API to easily create elements and modifiers.
 ```ts
 import { bem } from 'bem-composer';
 
-console.log(bem('button', 'icon')); // button--icon
-console.log(bem('button')('icon')); // button--icon
+console.log(bem('button', 'icon').toString()); // button--icon
+console.log(bem('button')('icon').toString()); // button--icon
 console.log(bem('button', 'icon', 'active').toString()); // 'button--icon__active'
 console.log(bem('button')('icon', 'active').toString()); // 'button--icon__active'
 console.log(bem('button', 'icon')('active').toString()); // 'button--icon__active'
