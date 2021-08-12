@@ -173,14 +173,14 @@ function bem(
   modifierValue: BEMModifierValue
 ): BEMModifier;
 
-type BEMModifierValue =
+export type BEMModifierValue =
   | {
       name: string;
       value?: string | boolean;
     }
   | string;
 
-interface BEMBlock {
+export interface BEMBlock {
   (): string; // shortcut for toString()
   (elementName: string): BEMElement;
   (
@@ -191,7 +191,7 @@ interface BEMBlock {
   toSelector: () => string; // Return classname selector
 }
 
-interface BEMElement {
+export interface BEMElement {
   (): string; // shortcut for toString()
   (modifierValue: BEMModifierValue): BEMModifier;
   toString: () => string;
@@ -200,8 +200,9 @@ interface BEMElement {
   toParentSelector: () => string;
 }
 
-interface BEMModifier {
+export interface BEMModifier {
   (): string;
+  (modifierValue: BEMModifierValue): BEMModifier; // modifier chain, for multiple modifiers support
   toString: () => string;
   toSelector: () => string;
   toSuffix: (withElement?: boolean) => string;

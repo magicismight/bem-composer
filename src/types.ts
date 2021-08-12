@@ -34,7 +34,7 @@ export interface BEMElement {
 
 export interface BEMModifier {
   (): string;
-  (modifierValue: BEMModifierValue): BEMModifier;
+  (modifierValue: BEMModifierValue): BEMModifier; // modifier chain, for multiple modifiers support
   toString: () => string;
   toSelector: () => string;
   toSuffix: (withElement?: boolean) => string;
