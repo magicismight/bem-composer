@@ -75,6 +75,11 @@ typings/
 #DynamoDB Local files
 .dynamodb/
 
-dist/
+# Mac
 .DS_Store
 
+# build results
+dist/
+
+# jest coverage
+.coverage
