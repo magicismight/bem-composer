@@ -226,12 +226,12 @@ export const StyledButton = styled.button`
     outline: none;
   }
 
-  /* .button-icon */
+  /* &--icon */
   ${e.toParentSelector()} {
     width: 20px;
     height: 20px;
 
-    /* .button--icon__active */
+    /* &__active */
     ${m.toParentSelector()} {
       opacity: 0.5;
     }
