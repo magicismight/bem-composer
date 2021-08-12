@@ -1,6 +1,6 @@
 # BEM composer
 
-![Lines](https://img.shields.io/badge/lines-100%25-brightgreen.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+![Lines](https://img.shields.io/badge/lines-98.36%25-brightgreen.svg) [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
 
 > A easy [BEM](https://en.bem.info/) classname tool for React, styled-components, linaria.
 > Recommend using with [classnames](https://www.npmjs.com/package/classnames).
@@ -58,6 +58,12 @@ console.log(m.toSuffix(true).toString()); // '--icon__active'
 // get parent selector with element
 console.log(m.toParentSelector(true).toString()); // '&--icon__active'
 
+// multiple modifiers support
+console.log(m('large')({
+  name: 'rounded',
+  value: true
+}).toString()); // 'button--icon__active_large_rounded'
+
 // create a modifier with value
 const mv = e({
   name: 'active',
@@ -77,6 +83,8 @@ console.log(e({
 
 // block with modifier
 console.log(b('', 'active').toString()); // 'button_active'
+
+
 
 
 ```
@@ -228,4 +236,16 @@ export const StyledButton = styled.button`
     }
   }
 `;
+```
+
+---
+
+# Trouble shooting
+
+## Multiple elements support
+
+As we don't want BEM classname to be too complicated, multiple elements is not provided by this library, but you can do some workaround like this:
+
+```ts
+bem('block', 'e1--e2--e3').toString();
 ```

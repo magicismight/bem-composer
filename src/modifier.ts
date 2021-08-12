@@ -23,19 +23,42 @@ export function modifier(
   value: BEMModifierValue,
   blockName: string,
   elementName: string | undefined,
-  delimiters: BEMDelimiters
+  delimiters: BEMDelimiters,
+  modifierContext?: string
 ): BEMModifier {
   const modifierString = stringifyModifierValue(
     value,
     delimiters.modifierValue
   );
 
+  function chain(): string;
+  function chain(modifierValue: BEMModifierValue): BEMModifier;
+  function chain(modifierValue?: BEMModifierValue): string | BEMModifier {
+    if (modifierValue) {
+      return modifier(
+        modifierValue,
+        blockName,
+        elementName,
+        delimiters,
+        modifierString
+          ? (modifierContext ?? '') + delimiters.modifier + modifierString
+          : modifierContext
+      );
+    } else {
+      return toString();
+    }
+  }
+
+  const combinedModifier =
+    (modifierContext ?? '') +
+    (modifierString ? delimiters.modifier + modifierString : '');
+
   const toString = (): string => {
     return (
       delimiters.prefix +
       blockName +
       (elementName ? delimiters.element + elementName : '') +
-      (modifierString ? delimiters.modifier + modifierString : '')
+      combinedModifier
     );
   };
 
@@ -49,9 +72,7 @@ export function modifier(
         ? elementName
           ? delimiters.element + elementName
           : ''
-        : '') +
-      delimiters.modifier +
-      modifierString
+        : '') + combinedModifier
     );
   };
 
@@ -59,7 +80,7 @@ export function modifier(
     return `&${toSuffix(withElement)}`;
   };
 
-  return Object.assign(toString, {
+  return Object.assign(chain, {
     toString,
     toSelector,
     toSuffix,

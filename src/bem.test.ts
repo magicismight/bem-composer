@@ -217,6 +217,46 @@ describe('modifier without element', () => {
   });
 });
 
+describe('modifier chain', () => {
+  const m = bem(BlockName, ElementName);
+
+  it('can be chained with one more modifier', () => {
+    expect(m(ModifierName)('large')()).toBe(
+      BlockWithElementAndModifier + DefaultBEMDelimiters.modifier + 'large' // .button--icon__active__large
+    );
+  });
+
+  it('can be chained with multiple modifiers', () => {
+    expect(m(ModifierName)('large')('rounded')()).toBe(
+      BlockWithElementAndModifier +
+        DefaultBEMDelimiters.modifier +
+        'large' +
+        DefaultBEMDelimiters.modifier +
+        'rounded' // .button--icon__active__large
+    );
+  });
+
+  it('can be chained with multiple modifiers', () => {
+    expect(m(ModifierName)('large').toSuffix()).toBe(
+      DefaultBEMDelimiters.modifier +
+        ModifierName +
+        DefaultBEMDelimiters.modifier +
+        'large' // __active__large
+    );
+  });
+
+  it('can be chained with complex modifiers', () => {
+    expect(
+      m({
+        name: ModifierName,
+        value: false
+      })('large').toSuffix()
+    ).toBe(
+      DefaultBEMDelimiters.modifier + 'large' // __active__large
+    );
+  });
+});
+
 describe('curried api', () => {
   test('BlockWithElement', () => {
     expect(bem(BlockName, ElementName).toString()).toBe(BlockWithElement);
