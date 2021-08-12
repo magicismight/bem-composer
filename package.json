@@ -2,8 +2,9 @@
   "name": "bem-composer",
   "version": "0.0.2",
   "description": "BEM classnames generator for react, styled components, linaria",
-  "main": "dist/lib/numbers.js",
-  "module": "dist/esm/numbers.js",
+  "main": "dist/lib/bem.js",
+  "module": "dist/esm/bem.js",
+  "types": "dist/esm/bem.d.ts",
   "author": {
     "name": "Horcrux Chen"
   },
