@@ -88,6 +88,7 @@ import { configure, DefaultBEMDelimiters } from 'bem-composer';
 
 // Configure BEM constructor with custom delimiters.
 const cbem = configure({
+  prefix: 'bem-',
   element: '__',
   modifier: '~~',
   modifierValue: '~'
@@ -98,7 +99,7 @@ console.log(
     name: 'active',
     value: 'hover'
   }).toString()
-); // block__icon~~active~hover
+); // bem-block__icon~~active~hover
 ```
 
 ## Curried API

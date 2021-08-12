@@ -22,7 +22,9 @@ export function element(
   }
 
   const toString = (): string => {
-    return name ? blockName + delimiters.element + name : blockName;
+    return delimiters.prefix + name
+      ? blockName + delimiters.element + name
+      : blockName;
   };
 
   const toSelector = (): string => {

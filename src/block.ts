@@ -30,7 +30,7 @@ export function block(name: string, delimiters: BEMDelimiters): BEMBlock {
   }
 
   const toString = (): string => {
-    return name;
+    return delimiters.prefix + name;
   };
 
   const toSelector = (): string => {

@@ -8,6 +8,7 @@ import {
 import { block } from './block';
 
 export const DefaultBEMDelimiters: BEMDelimiters = {
+  prefix: '',
   element: '--',
   modifier: '__',
   modifierValue: '-'

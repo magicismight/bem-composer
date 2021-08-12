@@ -1,4 +1,5 @@
 export interface BEMDelimiters {
+  prefix: string;
   element: string;
   modifier: string;
   modifierValue: string;

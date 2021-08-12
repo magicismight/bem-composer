@@ -259,6 +259,7 @@ describe('curried api', () => {
 
 describe('custom delimiters', () => {
   const cbem = configure({
+    prefix: 'bem-',
     element: '__',
     modifier: '~~',
     modifierValue: '~'
@@ -271,6 +272,7 @@ describe('custom delimiters', () => {
       }).toString()
     ).toBe(
       [
+        'bem-',
         BlockName,
         '__',
         ElementName,

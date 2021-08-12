@@ -32,6 +32,7 @@ export function modifier(
 
   const toString = (): string => {
     return (
+      delimiters.prefix +
       blockName +
       (elementName ? delimiters.element + elementName : '') +
       (modifierString ? delimiters.modifier + modifierString : '')
