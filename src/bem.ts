@@ -14,16 +14,6 @@ export const DefaultBEMDelimiters: BEMDelimiters = {
   modifierValue: '-'
 };
 
-interface bem {
-  (blockName: string): BEMBlock;
-  (blockName: string, elementName: string): BEMElement;
-  (
-    blockName: string,
-    elementName: string,
-    modifierValue: BEMModifierValue
-  ): BEMModifier;
-}
-
 export function configure(delimiters: Partial<BEMDelimiters>): bem {
   function curried(blockName: string): BEMBlock;
   function curried(blockName: string, elementName: string): BEMElement;
@@ -51,6 +41,16 @@ export function configure(delimiters: Partial<BEMDelimiters>): bem {
   }
 
   return curried;
+}
+
+interface bem {
+  (blockName: string): BEMBlock;
+  (blockName: string, elementName: string): BEMElement;
+  (
+    blockName: string,
+    elementName: string,
+    modifierValue: BEMModifierValue
+  ): BEMModifier;
 }
 
 const bem = configure(DefaultBEMDelimiters);
