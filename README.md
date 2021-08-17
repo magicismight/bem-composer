@@ -124,44 +124,6 @@ console.log(bem('button')('icon', 'active').toString()); // 'button--icon__activ
 console.log(bem('button', 'icon')('active').toString()); // 'button--icon__active'
 ```
 
-# React
-
-```jsx
-import React from 'react';
-import { bem } from 'bem-composer';
-import classNames from 'classnames';
-
-const b = bem('button');
-const e = b('icon');
-const m = e('active');
-
-export default function Button(props) {
-  const { active } = props;
-  return (
-    <button
-      classname={classNames([
-        b(), // 'button'
-        b('', {
-          name: 'active',
-          value: active
-        }) // button__active
-      ])}
-    >
-      <img
-        classname={classNames([
-          e(), // 'button-icon'
-          e({
-            name: 'active',
-            value: active
-          }), // active === true ? 'button--icon__active' : 'button--icon'
-          e('primary') // 'button--icon__primary'
-        ])}
-      />
-    </button>
-  );
-}
-```
-
 ## BEM Constructor type definition
 
 ```ts
@@ -207,6 +169,44 @@ export interface BEMModifier {
   toSelector: () => string;
   toSuffix: (withElement?: boolean) => string;
   toParentSelector: (withElement?: boolean) => string;
+}
+```
+
+# React
+
+```jsx
+import React from 'react';
+import { bem } from 'bem-composer';
+import classNames from 'classnames';
+
+const b = bem('button');
+const e = b('icon');
+const m = e('active');
+
+export default function Button(props) {
+  const { active } = props;
+  return (
+    <button
+      classname={classNames([
+        b(), // 'button'
+        b('', {
+          name: 'active',
+          value: active
+        }) // button__active
+      ])}
+    >
+      <img
+        classname={classNames([
+          e(), // 'button-icon'
+          e({
+            name: 'active',
+            value: active
+          }), // active === true ? 'button--icon__active' : 'button--icon'
+          e('primary') // 'button--icon__primary'
+        ])}
+      />
+    </button>
+  );
 }
 ```
 
