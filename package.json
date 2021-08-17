@@ -1,6 +1,6 @@
 {
   "name": "bem-composer",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "BEM classnames generator for react, styled components, linaria",
   "main": "dist/lib/bem.js",
   "module": "dist/esm/bem.js",
