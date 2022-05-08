@@ -5,6 +5,7 @@
   "main": "dist/lib/bem.js",
   "module": "dist/esm/bem.js",
   "types": "dist/esm/bem.d.ts",
+  "sideEffects": false,
   "repository": {
     "type": "github",
     "url": "https://github.com/magicismight/bem-composer"
