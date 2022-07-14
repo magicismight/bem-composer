@@ -297,6 +297,50 @@ describe('curried api', () => {
   });
 });
 
+describe('custom prefix', () => {
+  const cbem = configure({
+    prefix: 'bem-'
+  });
+
+  it('should add prefix', () => {
+    const value = [
+      'bem-',
+      BlockName,
+      DefaultBEMDelimiters.element,
+      ElementName,
+      DefaultBEMDelimiters.modifier,
+      ModifierName,
+      DefaultBEMDelimiters.modifierValue,
+      ModifierValue
+    ].join(''); // button__icon~~active~true
+
+    expect(
+      cbem(BlockName, ElementName, {
+        name: ModifierName,
+        value: ModifierValue
+      }).toString()
+    ).toBe(value);
+
+    expect(cbem(BlockName)(ElementName).toString()).toBe(
+      ['bem-', BlockName, DefaultBEMDelimiters.element, ElementName].join('') // bem-button--icon
+    );
+
+    expect(
+      cbem(BlockName)(ElementName, {
+        name: ModifierName,
+        value: ModifierValue
+      }).toString()
+    ).toBe(value);
+
+    expect(
+      cbem(BlockName)(ElementName)({
+        name: ModifierName,
+        value: ModifierValue
+      }).toString()
+    ).toBe(value);
+  });
+});
+
 describe('custom delimiters', () => {
   const cbem = configure({
     prefix: 'bem-',
